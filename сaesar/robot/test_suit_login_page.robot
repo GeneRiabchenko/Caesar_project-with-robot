@@ -1,10 +1,11 @@
 *** Settings ***
 Library           Selenium2Library
-Resource          custom_keywords.robot
+Resource          Resource/login_page_resource.robot
 
 *** Variables ***
-${Login Title}    Log in - Caesar
 ${Group page title}    Caesar
+${User Photo}     xpath=//*[@id="icon"]/div/img
+${Login Title}    Log in - Caesar
 
 *** Test Cases ***
 Login as Admin
@@ -14,8 +15,8 @@ Login as Admin
     Input Text    name=login    qwerty
     Input Text    name=password    1234
     Click Element    class=submit
-    Wait Until Element Is Visible    xpath=//*[@id="icon"]/div/img    5    Element user image not found.
-    Click Element    xpath=//*[@id="icon"]/div/img
+    Wait Until Element Is Visible    ${User Photo}    5    Element user image not found.
+    Click Element    ${User Photo}
     ${User Name}    Get Text    class=name
     ${User Role}    Get Text    class=role
     Should Be Equal    ${User Name}    Kirill\nKozak
