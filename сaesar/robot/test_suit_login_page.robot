@@ -3,9 +3,6 @@ Library           Selenium2Library
 Resource          Resource/login_page_resource.robot
 
 *** Variables ***
-${Group page title}    Caesar
-${User Photo}     xpath=//*[@id="icon"]/div/img
-${Login Title}    Log in - Caesar
 
 *** Test Cases ***
 Login as Admin

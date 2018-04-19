@@ -2,13 +2,10 @@
 Test Setup
 Library           Selenium2Library
 Resource          Resource/admin_resource.robot
+Resource          Resource/group_page_resource.robot
+Resource          Resource/login_page_resource.robot
 
 *** Variables ***
-${User Photo}     xpath=//*[@id="icon"]/div/img
-${Logout right button}    css=a.logout:nth-child(3)
-${Login Title}    Log in - Caesar
-${Top Menu}       css=#top-menu
-${Logout top button}    css=a.logout:nth-child(1)
 
 *** Test Cases ***
 log_out_from_right_menu
@@ -28,4 +25,12 @@ log_out_top_menu
     Click Element    ${Logout top button}
     ${Caesar title}    Get Title
     Should Be Equal    ${Caesar title}    ${Login Title}
+    [Teardown]    Close Browser
+
+open_about_page
+    [Setup]    Login with arguments    qwerty    1234
+    Wait Until Element Is Visible    class=groupLocation
+    Mouse Over    id=top-menu
+    Click Element    css=div.itemMenu:nth-child(6)
+    Page Should Contain Element    css=.javascript
     [Teardown]    Close Browser

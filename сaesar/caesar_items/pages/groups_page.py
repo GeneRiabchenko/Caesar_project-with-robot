@@ -9,7 +9,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from caesar_items.locators.locators import \
     GroupPageLocators, LeftMenuLocators, RightMenuLocators, TopMenuLocators, \
     CreateGroupWindowLocators, LocationWindowLocators, AboutPageLocators, \
-    DevelopmentPanelLocators, QualityAssurancePanelLocators
+    DevelopmentPanelLocators, QualityAssurancePanelLocators, AdminPageLocators
 from caesar_items.pages.base_page import BasePage
 from caesar_items.pages.admin_page import AdminPage
 from resource.url_site import PathUrl
@@ -337,6 +337,9 @@ class GroupsPage(BasePage):
     def open_admin_page(self):
         """ Open admin page panel."""
         self.driver.get(PathUrl().ADMIN_PAGE)
+        WebDriverWait(self.driver, TIME_TO_WAIT) \
+            .until(EC.visibility_of_element_located(AdminPageLocators.
+                                                    BUTTON_ESCAPE))
         return AdminPage(self.driver)
 
     def get_group_stage_text(self):

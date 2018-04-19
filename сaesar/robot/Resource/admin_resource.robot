@@ -76,4 +76,5 @@ Add Student
     Set Selenium Timeout    2
 
 Tab students
+
 Click Element css:a[href*='students']
