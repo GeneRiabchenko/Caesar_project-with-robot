@@ -9,6 +9,7 @@ from resource.url_site import PathUrl
 from resource.constants_creating_group import TEST_DIRECTION
 from caesar_items.pages.login_page import LogInPage
 from tests.test_base import TestBase
+from resource.error_handler import logger_exception
 
 
 expected_url = 'http://localhost:3000/Groups/Dnipro'
@@ -37,6 +38,7 @@ class TestGroupPageAdmin(TestBase):
         super().setUp()
         self.group_page = self.login_page.auto_login(first_admin)
 
+    @logger_exception
     def test01_logout_top_menu(self):
         """ Logout from site using logout button on top menu."""
         top_menu = self.group_page.open_top_menu()
@@ -44,6 +46,7 @@ class TestGroupPageAdmin(TestBase):
         self.assertEqual(self.login_page.get_title_name(),
                          expected_login_page_title)
 
+    @logger_exception
     def test02_logout_right_menu(self):
         """ Logout from site using logout button on right menu."""
         right_menu = self.group_page.open_right_menu()
@@ -51,6 +54,7 @@ class TestGroupPageAdmin(TestBase):
         self.assertEqual(self.login_page.get_title_name(),
                          expected_login_page_title)
 
+    @logger_exception
     def test03_open_about(self):
         """ Open about page and check url."""
         expected_page_url = 'http://localhost:3000/About'
@@ -58,6 +62,7 @@ class TestGroupPageAdmin(TestBase):
         top_menu.click_about_button()
         self.assertEqual(self.group_page.get_current_url(), expected_page_url)
 
+    @logger_exception
     def test04_open_add(self):
         """ Open add page and check url."""
         expected_page_url = 'http://localhost:3000/Add'
@@ -65,6 +70,7 @@ class TestGroupPageAdmin(TestBase):
         top_menu.click_add_button()
         self.assertEqual(self.group_page.get_current_url(), expected_page_url)
 
+    @logger_exception
     def test05_open_schedule(self):
         """ Open schedule page and check url."""
         expected_page_url = 'http://localhost:3000/Schedule/' \
@@ -73,6 +79,7 @@ class TestGroupPageAdmin(TestBase):
         top_menu.click_schedule_button()
         self.assertEqual(self.group_page.get_current_url(), expected_page_url)
 
+    @logger_exception
     def test06_open_students(self):
         """ Open students page and check url."""
         top_menu = self.group_page.open_top_menu()
@@ -81,6 +88,7 @@ class TestGroupPageAdmin(TestBase):
                             + first_admin.location
         self.assertEqual(self.group_page.get_current_url(), expected_page_url)
 
+    @logger_exception
     def test07_open_groups(self):
         """ Open group page and check url."""
         expected_page_url = 'http://localhost:3000/Groups/' \
@@ -89,6 +97,7 @@ class TestGroupPageAdmin(TestBase):
         top_menu.click_groups_button()
         self.assertEqual(self.group_page.get_current_url(), expected_page_url)
 
+    @logger_exception
     def test08_open_locations(self):
         """ Open location panel and check url."""
         expected_page_url = 'http://localhost:3000/Groups/' \
@@ -97,6 +106,7 @@ class TestGroupPageAdmin(TestBase):
         top_menu.click_locations_button()
         self.assertEqual(self.group_page.get_current_url(), expected_page_url)
 
+    @logger_exception
     def test09_open_create_page(self):
         """ Open create group panel and check url."""
         expected_page_url = 'http://localhost:3000/Groups/' \
@@ -105,6 +115,7 @@ class TestGroupPageAdmin(TestBase):
         left_menu.create_group_button().click()
         self.assertEqual(self.group_page.get_current_url(), expected_page_url)
 
+    @logger_exception
     def test10_open_edit_group_left_menu(self):
         """ Open edit group panel and check url."""
         expected_page_url = 'http://localhost:3000/Groups/Dnipro/' \
@@ -114,6 +125,7 @@ class TestGroupPageAdmin(TestBase):
         left_menu.edit_group_button().click()
         self.assertEqual(self.group_page.get_current_url(), expected_page_url)
 
+    @logger_exception
     def test11_open_search_panel_left_menu(self):
         """ Open search panel and check url."""
         search_group_url = 'http://localhost:3000/Groups/Dnipro/' \
@@ -122,6 +134,7 @@ class TestGroupPageAdmin(TestBase):
         left_menu.search_group_button().click()
         self.assertEqual(self.group_page.get_current_url(), search_group_url)
 
+    @logger_exception
     def test12_delete_group_left_menu(self):
         """ Check that admin can delete group."""
         expected_string = "group not exist"
@@ -133,6 +146,7 @@ class TestGroupPageAdmin(TestBase):
         self.assertEqual(self.group_page.select_group_by_name(
             group_to_delete_name), expected_string)
 
+    @logger_exception
     def test13_groups_stage_in_progress_or_offering(self):
         """ Check that groups placed in page with right stage status."""
         expected_result = ['in-process', 'offering']
@@ -143,6 +157,7 @@ class TestGroupPageAdmin(TestBase):
             actual_result = self.group_page.get_group_stage_text()
             self.assertIn(actual_result, expected_result)
 
+    @logger_exception
     def test14_groups_stage_finished(self):
         """ Check that groups placed in page with right stage status."""
         expected_result = 'finished'
@@ -153,6 +168,7 @@ class TestGroupPageAdmin(TestBase):
             actual_result = self.group_page.get_group_stage_text()
             self.assertEqual(actual_result, expected_result)
 
+    @logger_exception
     def test15_groups_stage_boarding(self):
         """ Check that groups placed in page with right stage status."""
         expected_result = ('boarding', 'planned')
@@ -163,6 +179,7 @@ class TestGroupPageAdmin(TestBase):
             actual_result = self.group_page.get_group_stage_text()
             self.assertIn(actual_result, expected_result)
 
+    @logger_exception
     def test16_open_edit_user_panel(self):
         """ Check that user can open edit profile panel."""
         expected_result = 'http://localhost:3000/EditProfile'
@@ -170,6 +187,7 @@ class TestGroupPageAdmin(TestBase):
         right_menu.click_edit_user_button()
         self.assertEqual(right_menu.get_current_url(), expected_result)
 
+    @logger_exception
     def test17_open_groups_info_panel(self):
         """ Check that user can open info panel in selected group."""
         expected_result = 'http://localhost:3000/Groups/Dnipro/' \
@@ -178,6 +196,7 @@ class TestGroupPageAdmin(TestBase):
         self.group_page.group_info_button().click()
         self.assertEqual(self.group_page.get_current_url(), expected_result)
 
+    @logger_exception
     def test18_open_groups_students_panel(self):
         """ Check that user can open students panel in selected group."""
         expected_result = 'http://localhost:3000/Groups/Dnipro/' \
@@ -186,6 +205,7 @@ class TestGroupPageAdmin(TestBase):
         self.group_page.group_students_button().click()
         self.assertEqual(self.group_page.get_current_url(), expected_result)
 
+    @logger_exception
     def test19_open_groups_schedule_panel(self):
         """ Check that user can open schedule panel in selected group."""
         expected_result = 'http://localhost:3000/Groups/Dnipro/' \
@@ -194,6 +214,7 @@ class TestGroupPageAdmin(TestBase):
         self.group_page.group_calendar_button().click()
         self.assertEqual(self.group_page.get_current_url(), expected_result)
 
+    @logger_exception
     def test20_open_groups_message_panel(self):
         """ Check that user can open messages panel in selected group."""
         expected_result = 'http://localhost:3000/Groups/Dnipro/' \
@@ -202,6 +223,7 @@ class TestGroupPageAdmin(TestBase):
         self.group_page.group_message_button().click()
         self.assertEqual(self.group_page.get_current_url(), expected_result)
 
+    @logger_exception
     def test21_open_edit_group_from_info_panel(self):
         """ Check that user can open edit group panel in selected group."""
         expected_result = 'http://localhost:3000/Groups/Dnipro/' \
@@ -231,6 +253,7 @@ class TestGroupPageCoordinator(TestBase):
         super().setUp()
         self.group_page = self.login_page.auto_login(coordinator)
 
+    @logger_exception
     def test22_open_create_page(self):
         """ Open create group panel as coordinator and check url."""
         left_menu = self.group_page.open_left_menu()
@@ -239,6 +262,7 @@ class TestGroupPageCoordinator(TestBase):
                             + coordinator.location + '/new'
         self.assertEqual(self.group_page.get_current_url(), expected_page_url)
 
+    @logger_exception
     def test23_open_edit_group_left_menu(self):
         """ Open edit group panel as coordinator and check url."""
         edit_group_url = 'http://localhost:3000/Groups/Dnipro/' \
@@ -248,6 +272,7 @@ class TestGroupPageCoordinator(TestBase):
         left_menu.edit_group_button().click()
         self.assertEqual(self.group_page.get_current_url(), edit_group_url)
 
+    @logger_exception
     def test24_open_search_panel_left_menu(self):
         """ Open search panel and check url."""
         edit_group_url = 'http://localhost:3000/Groups/Dnipro/' \
@@ -256,6 +281,7 @@ class TestGroupPageCoordinator(TestBase):
         left_menu.search_group_button().click()
         self.assertEqual(self.group_page.get_current_url(), edit_group_url)
 
+    @logger_exception
     def test25_delete_group_left_menu(self):
         """ Check that coordinator can delete group."""
         expected_string = "group not exist"
@@ -273,11 +299,13 @@ class TestGroupPageTeacher(TestBase):
         super().setUp()
         self.group_page = self.login_page.auto_login(teacher)
 
+    @logger_exception
     def test26_disabled_create_button_for_teacher(self):
         """ Check that teacher doesn't have create button."""
         left_menu = self.group_page.open_left_menu()
         self.assertRaises(TimeoutException, left_menu.create_group_button)
 
+    @logger_exception
     def test27_delete_button_disabled_for_teacher(self):
         """ Check that teacher doesn't have delete button."""
         self.group_page.select_group_by_name(group_name)
@@ -285,12 +313,14 @@ class TestGroupPageTeacher(TestBase):
         self.assertRaises(NoSuchElementException, left_menu.
                           delete_group_button)
 
+    @logger_exception
     def test28_left_menu_edit_button_disabled_for_teacher(self):
         """ Check that teacher doesn't have edit button."""
         self.group_page.select_group_by_name(group_name)
         left_menu = self.group_page.open_left_menu()
         self.assertRaises(NoSuchElementException, left_menu.edit_group_button)
 
+    @logger_exception
     def test29_open_search_panel_left_menu(self):
         """ Open search panel and check url."""
         edit_group_url = 'http://localhost:3000/Groups/Dnipro/' \
