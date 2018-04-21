@@ -227,13 +227,16 @@ class CreateGroupWindowLocators(object):
                          'div.form-group.col-xs-6.col-xs-offset-0.col-md-5.'
                          'col-md-offset-1.col-lg-4.calendar-wrapper')
     START_DATE_FIELD = (By.NAME, 'startDate')
+    FINISH_DATE_FORM = (
+        By.CSS_SELECTOR, '#modal-window > section > section > section > '
+                         'div:nth-child(4) > div.form-group.col-xs-6.'
+                         'col-xs-offset-0.col-md-5.col-md-offset-1.col-lg-4'
+                         '.calendar-wrapper')
     FINISH_DATE_FIELD = (By.NAME, 'finishDate')
     ADD_EXPERT_BUTTON = (By.CLASS_NAME, 'add-expert-btn')
     EXPERTS_NAME_FIELD = (By.NAME, 'expert')
     ACCEPT_EXPERT_BUTTON = (By.ID, 'acceptInput')
-    EXPERTS_FORM = (By.CSS_SELECTOR, "#modal-window > section > section > "
-                                     "section > div:nth-child(6) > "
-                                     "div:nth-child(2)")
+    EXPERTS_FORM = (By.CSS_SELECTOR, "#experts > div")
     ADDED_EXPERTS_LIST = (By.CLASS_NAME, 'listExpert')
     SAVE_BUTTON = (By.ID, 'save')
     CANCEL_BUTTON = (By.ID, 'cancel')
@@ -255,7 +258,8 @@ class StudentsListLocators(object):
     STUDENTS_TABLE = (By.CLASS_NAME, 'tableBodyStudents')
     EXIT_EDIT_STUDENTS_LIST_BUTTON = (By.CLASS_NAME, 'exit')
     DELETE_STUDENT_BUTTON = (By.XPATH, './/*[@id="modal-window"]//td[6]/i')
-    CONFIRM_DELETING_BUTTON = (By.XPATH, './/*[@id="modal-window"]//button[1]')
+    CONFIRM_DELETING_BUTTON = \
+        (By.XPATH, './/*[@id="modal-window"]//button[1]')
     ADD_NEW_STUDENT_BUTTON = \
         (By.XPATH, './/*[@id="modal-window"]/section//button[1]')
     EDIT_STUDENT_BUTTON = \

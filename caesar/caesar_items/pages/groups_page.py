@@ -1,21 +1,21 @@
-from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.select import Select
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.ui import WebDriverWait
 
 from caesar_items.locators.locators import \
     GroupPageLocators, LeftMenuLocators, RightMenuLocators, TopMenuLocators, \
     CreateGroupWindowLocators, LocationWindowLocators, AboutPageLocators, \
     DevelopmentPanelLocators, QualityAssurancePanelLocators, AdminPageLocators
-from caesar_items.pages.base_page import BasePage
 from caesar_items.pages.admin_page import AdminPage
-from resource.url_site import PathUrl
+from caesar_items.pages.base_page import BasePage
 from resource.constants_creating_group import TIME_TO_WAIT, \
-    TEST_TEACHER_INDEX, TEST_FIRST_EXPERT_NAME, TEST_START_DATE
+    TEST_FIRST_EXPERT_NAME, TEST_START_DATE, TEST_DIRECTION, \
+    TEST_GROUP_NAME, TEST_LOCATION, TEST_TEACHERS_NAME
 from resource.error_handler import logger_exception
+from resource.url_site import PathUrl
 
 
 class AboutPage(object):
@@ -161,21 +161,22 @@ class LocationsWindow(object):
     @logger_exception
     def save_button(self):
         """ Return save button web element."""
-        save_button = self.driver.find_element(*LocationWindowLocators.SAVE_BUTTON)
+        save_button = self.driver.find_element(*LocationWindowLocators.
+                                               SAVE_BUTTON)
         return save_button
 
     @logger_exception
     def disabled_save_button(self):
         """ Return disabled save button web element."""
         disabled_save_button = self.driver.find_element(*LocationWindowLocators.
-                                                            DISABLED_SAVE_BUTTON)
+                                                        DISABLED_SAVE_BUTTON)
         return disabled_save_button
 
     @logger_exception
     def cancel_button(self):
         """ Return cancel button web element."""
         cancel_button = self.driver.find_element(*LocationWindowLocators.
-                                                     CANCEL_BUTTON)
+                                                 CANCEL_BUTTON)
         return cancel_button
 
     @logger_exception
@@ -468,6 +469,9 @@ class GroupsPage(BasePage):
             self.start_date_form = WebDriverWait(self.driver, TIME_TO_WAIT). \
                 until(EC.presence_of_element_located(CreateGroupWindowLocators.
                                                      START_DATE_FORM))
+            self.finish_date_form = WebDriverWait(self.driver, TIME_TO_WAIT). \
+                until(EC.presence_of_element_located(CreateGroupWindowLocators.
+                                                     FINISH_DATE_FORM))
             self.experts_form = WebDriverWait(self.driver, TIME_TO_WAIT). \
                 until(EC.presence_of_element_located(CreateGroupWindowLocators.
                                                      EXPERTS_FORM))
@@ -496,63 +500,82 @@ class GroupsPage(BasePage):
                 until(EC.element_to_be_clickable(CreateGroupWindowLocators.
                                                  ADD_EXPERT_BUTTON))
 
+        @logger_exception
         def get_group_name_field(self) -> object:
             """ Get group name field web element."""
             return self.group_name_field
 
+        @logger_exception
         def set_group_name(self, new_group_name) -> object:
             """ Set group name using entered value."""
             self.clear_group_name_field()
             self.group_name_field.send_keys(new_group_name)
             return self
 
+        @logger_exception
         def clear_group_name_field(self) -> object:
             """ Clear group name field."""
             self.group_name_field.clear()
             return self
 
+        @logger_exception
         def get_group_name_form(self) -> object:
             """ Get group name form web element. """
             return self.group_name_form
 
+        @logger_exception
         def get_group_direction_form(self) -> object:
             """ Get direction form web element."""
             return self.group_direction_form
 
+        @logger_exception
         def get_group_location_form(self) -> object:
             """ Get location form web element."""
             return self.group_location_form
 
+        @logger_exception
         def get_start_date_form(self) -> object:
             """ Get start date form web element."""
             return self.start_date_form
 
+        @logger_exception
+        def get_finish_date_form(self) -> object:
+            """ Get start date form web element."""
+            return self.finish_date_form
+
+        @logger_exception
         def get_experts_form(self) -> object:
             """ Get expert form web element."""
             return self.experts_form
 
+        @logger_exception
         def get_value_group_name_field(self) -> str:
             """ Get value from group name field."""
             return self.group_name_field.get_attribute("value")
 
+        @logger_exception
         def get_group_direction(self) -> object:
             """ Get  group direction web element."""
             return self.group_direction_list
 
+        @logger_exception
         def set_group_direction(self, str_direction) -> object:
             """ Set  chosen group direction."""
             select_direction = Select(self.group_direction_list)
             select_direction.select_by_value(str_direction)
             return self
 
+        @logger_exception
         def get_value_of_direction(self) -> str:
             """ Get value of group from direction field."""
             return self.group_direction_list.get_attribute("value")
 
+        @logger_exception
         def get_group_location(self) -> object:
             """ Get  group location web element."""
             return self.group_location_list
 
+        @logger_exception
         def set_group_location(self, location_value) -> object:
             """ Set  chosen group location."""
             self.group_location_list.click()
@@ -560,33 +583,38 @@ class GroupsPage(BasePage):
             select_location.select_by_visible_text(location_value)
             return self
 
+        @logger_exception
         def get_value_of_location(self) -> str:
             """ Get value from group location field."""
             return self.group_location_list.get_attribute("value")
 
+        @logger_exception
         def get_teacher_add_button(self) -> object:
             """ Get  teacher add button web element."""
             return self.teacher_add_button
 
+        @logger_exception
         def get_teachers_drop_list(self) -> object:
             """ Get  teachers drop down list web element ."""
-            self.teacher_add_button.click()
-            try:
-                return WebDriverWait(self.driver, TIME_TO_WAIT).until(
-                    EC.element_to_be_clickable(CreateGroupWindowLocators.
-                                               TEACHERS_DROP_LIST))
-            finally:
-                return NoSuchElementException
+            teachers_drop_list = WebDriverWait(self.driver, 20).until(
+                EC.element_to_be_clickable(CreateGroupWindowLocators.
+                                           TEACHERS_DROP_LIST))
+            return teachers_drop_list
 
+        @logger_exception
         def select_teacher(self, teacher_name) -> object:
             """ Select teacher from teachers drop down list."""
             self.get_teacher_add_button().click()
-            self.get_teachers_drop_list().click()
-            select = Select(self.get_teachers_drop_list())
-            select.select_by_index(teacher_name)
-            self.driver.find_element(CreateGroupWindowLocators.ACCEPT_TEACHER_BUTTON)
+            drop_list_teachers = self.get_teachers_drop_list()
+            drop_list_teachers.click()
+            select = Select(drop_list_teachers)
+            select.select_by_value(teacher_name)
+            WebDriverWait(self.driver, TIME_TO_WAIT).until(
+                EC.element_to_be_clickable(CreateGroupWindowLocators.
+                                           ACCEPT_TEACHER_BUTTON)).click()
             return self
 
+        @logger_exception
         def add_teacher(self) -> object:
             """ Accept choosing teacher from teachers drop down list."""
             self.get_teacher_add_button().click()
@@ -595,6 +623,7 @@ class GroupsPage(BasePage):
                                            ACCEPT_TEACHER_BUTTON)).click()
             return self
 
+        @logger_exception
         def get_values_from_added_teachers_list(self) -> list:
             """ Get values from "added teachers" list."""
             added_teachers_form = WebDriverWait(self.driver, TIME_TO_WAIT).until(
@@ -606,21 +635,42 @@ class GroupsPage(BasePage):
                 list_of_teachers_values.append(added_teacher.text)
             return list_of_teachers_values
 
+        @logger_exception
         def set_start_date(self, start_date_value) -> object:
             """ Set value to "start date" field."""
             self.start_date_field.send_keys(start_date_value)
             self.finish_date_field.send_keys(Keys.ENTER)
             return self
 
+        @logger_exception
+        def get_value_start_date_field(self) -> str:
+            """ Get value from group start date field."""
+            return self.start_date_field.get_attribute("value")
+
+        @logger_exception
+        def set_finish_date(self, finish_date_value) -> object:
+            """ Set value to "finish date" field."""
+            self.finish_date_field.send_keys(finish_date_value)
+            self.start_date_field.send_keys(Keys.ENTER)
+            return self
+
+        @logger_exception
+        def get_value_finish_date_field(self) -> str:
+            """ Get value from group finish date field."""
+            return self.finish_date_field.get_attribute("value")
+
+        @logger_exception
         def submit_group_creating_button(self) -> object:
             """ End group creating and save all fields."""
             self.save_group_button.click()
             return self
 
+        @logger_exception
         def get_save_group_button(self) -> object:
             """ Get "Save" button web element."""
             return self.save_group_button
 
+        @logger_exception
         def get_warning_message_by_form(self, form) -> object:
             """ Get  pop-up warning message web element, attached to this form."""
             warning_message = None
@@ -632,10 +682,12 @@ class GroupsPage(BasePage):
                     warning_message = message_text.text
             return warning_message
 
+        @logger_exception
         def cancel_button_get(self) -> object:
             """ Get "Cancel" button web element."""
             return self.cancel_button
 
+        @logger_exception
         def add_expert(self, expert_name) -> object:
             """ Add expert - first click the "+one more expert" button, then set
             expert's name and then click  "accept  expert" button."""
@@ -649,39 +701,50 @@ class GroupsPage(BasePage):
                     CreateGroupWindowLocators.ACCEPT_EXPERT_BUTTON)).click()
             return self
 
+        @logger_exception
+        def add_expert_x(self, expert_name) -> object:
+            """ Add expert - first click the "+one more expert" button, then set
+            expert's name and then click  "accept  expert" button."""
+            WebDriverWait(self.driver, TIME_TO_WAIT).until(
+                EC.element_to_be_clickable(
+                    CreateGroupWindowLocators.ADD_EXPERT_BUTTON)).click()
+            WebDriverWait(self.driver, TIME_TO_WAIT).until(
+                EC.element_to_be_clickable(
+                    CreateGroupWindowLocators.EXPERTS_NAME_FIELD)). \
+                send_keys(expert_name)
+            WebDriverWait(self.driver, TIME_TO_WAIT).until(
+                EC.element_to_be_clickable(
+                    CreateGroupWindowLocators.ACCEPT_EXPERT_BUTTON)).click()
+            return self
+
+        @logger_exception
         def get_added_experts_list(self) -> list:
             """ Get values from "added experts" list."""
             added_experts_form = WebDriverWait(self.driver, TIME_TO_WAIT).until(
                 EC.presence_of_element_located(CreateGroupWindowLocators.
                                                ADDED_EXPERTS_LIST))
-            added_experts_list = added_experts_form. \
-                find_elements(By.CLASS_NAME, 'list-item')
+            added_experts_list = added_experts_form.find_elements(By.CLASS_NAME, 'list-item')
             list_of_values = []
             for added_expert in added_experts_list:
                 list_of_values.append(added_expert.text)
             return list_of_values
 
-        def auto_fill_all_fields(self, new_group_name, group_location,
-                                 group_direction) -> None:
+        @logger_exception
+        def auto_fill_all_fields(self, new_group_name=TEST_GROUP_NAME,
+                                 group_location=TEST_LOCATION,
+                                 group_direction=TEST_DIRECTION,
+                                 teachers_name=TEST_TEACHERS_NAME,
+                                 experts_name=TEST_FIRST_EXPERT_NAME,
+                                 start_date=TEST_START_DATE) -> None:
             """ Fill  all fields, to create some group,
                             function used to test deleting of groups."""
             self.group_direction_list.click()
             self.set_group_direction(group_direction)
             self.group_location_list.click()
-            select_location = Select(self.group_location_list)
-            select_location.select_by_value(group_location)
-            self.teacher_add_button.click()
-            drop_list_teachers = WebDriverWait(self.driver, TIME_TO_WAIT).until(
-                EC.element_to_be_clickable(CreateGroupWindowLocators.
-                                           TEACHERS_DROP_LIST))
-            drop_list_teachers.click()
-            select = Select(drop_list_teachers)
-            select.select_by_index(TEST_TEACHER_INDEX)
-            WebDriverWait(self.driver, TIME_TO_WAIT).until(
-                EC.element_to_be_clickable(CreateGroupWindowLocators.
-                                           ACCEPT_TEACHER_BUTTON)).click()
-            self.add_expert(TEST_FIRST_EXPERT_NAME)
-            self.start_date_field.send_keys(TEST_START_DATE)
+            self.set_group_location(group_location)
+            self.select_teacher(teachers_name)
+            self.add_expert(experts_name)
+            self.start_date_field.send_keys(start_date)
             self.finish_date_field.send_keys(Keys.ENTER)
             self.group_name_field.clear()
             self.group_name_field.send_keys(new_group_name)

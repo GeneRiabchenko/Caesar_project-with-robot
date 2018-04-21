@@ -24,7 +24,7 @@ class TestLoginPage(TestBase):
         cls.login_page.set_password_field_text(first_admin.password)
         cls.group_page = cls.login_page.click_submit_button()
         cls.group_page.open_admin_page()
-        # create_8_users_for_tests(cls.driver)
+        create_8_users_for_tests(cls.driver)
         cls.driver.quit()
 
     @logger_exception
