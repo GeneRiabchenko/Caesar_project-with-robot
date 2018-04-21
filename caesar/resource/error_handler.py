@@ -6,12 +6,9 @@ def create_logger():
     """
     Creates a logging object and returns it
     """
-    logger = logging.getLogger("inner logger")
-    logger.setLevel(logging.INFO)
-    logging.basicConfig(filename="test.txt", level=logging.INFO,
-                        format='%(module)s: %(funcName)s: '
-                               '%(message)s - %(asctime)s')
-    return logger
+    logging.basicConfig(filename="Log.log", level=logging.WARNING,
+                        format='[%(funcName)s]:%(message)s')
+    return logging
 
 
 def logger_exception(function):
@@ -22,15 +19,12 @@ def logger_exception(function):
 
     @functools.wraps(function)
     def wrapper(*args, **kwargs):
-        logger = create_logger()
+        log = create_logger()
         try:
             return function(*args, **kwargs)
         except Exception:
-            # log the exception
-            err = "There was an exception in  "
-            err += function.__name__
-            logger.exception(err)
-
+            log.exception("Error compiling data in: %s,\n %s"
+                          , function.__name__, function.__doc__)
             # re-raise the exception
             raise
 

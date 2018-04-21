@@ -14,9 +14,6 @@ class TestBase(unittest.TestCase):
         self.driver.get(PathUrl.SITE_URL)
         self.driver.maximize_window()
         self.login_page = LogInPage(self.driver)
-        logging.basicConfig(filename="Log.log", level=logging.INFO,
-                            format='%(module)s: %(funcName)s: '
-                                   '%(message)s - %(asctime)s')
 
     def tearDown(self):
         self.driver.quit()
