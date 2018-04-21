@@ -1,4 +1,6 @@
 import random
+import logging
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.select import Select
@@ -23,67 +25,143 @@ class AboutPage(object):
 
     def development_research_button(self):
         """ Get Development & Research button from about page."""
-        return self.driver.find_element(*AboutPageLocators.
-                                        DEVELOPMENT_RESEARCH_BUTTON)
+        try:
+            dev_res_button = \
+                self.driver.find_element(*AboutPageLocators.
+                                         DEVELOPMENT_RESEARCH_BUTTON)
+            logging.warning(" Development_research_button was found.")
+            return dev_res_button
+        except Exception:
+            logging.warning(" Development_research_button wasn't found.")
 
     def quality_assurance_button(self):
         """ Get Quality Assurance button from about page."""
-        return self.driver.find_element(*AboutPageLocators.
-                                        QUALITY_ASSURANCE)
+        try:
+            qa_button = self.driver.find_element(*AboutPageLocators.
+                                                 QUALITY_ASSURANCE)
+            logging.warning(" QA button was found!")
+            return qa_button
+        except Exception:
+            logging.warning(" QA button wasn't found!")
 
     def management_button(self):
         """ Get Management and Mentoring button from about page."""
-        return self.driver.find_element(*AboutPageLocators.
-                                        MANAGEMENT_MENTORING_BUTTON)
+        try:
+            managment_button = \
+                self.driver.find_element(*AboutPageLocators.
+                                         MANAGEMENT_MENTORING_BUTTON)
+            logging.warning(" Management_button was found!")
+            return managment_button
+        except Exception:
+            logging.warning(" Management_button wasn't found!")
 
     def additional_thanks_button(self):
         """ Get Additional Thanks button from about page."""
-        return self.driver.find_element(*AboutPageLocators.
-                                        ADDITIONAL_THANKS_BUTTON)
+        try:
+            button = \
+                self.driver.find_element(*AboutPageLocators.
+                                         ADDITIONAL_THANKS_BUTTON)
+            logging.warning(" additional_thanks_button was found!")
+            return button
+        except Exception:
+            logging.warning(" additional_thanks_button wasn't found!")
 
     def team_doloto_icon(self):
         """ Get Team Doloto icon from Development & Research."""
-        return self.driver.find_element(*DevelopmentPanelLocators.
-                                        TEAM_DOLOTO_ICON)
+        try:
+            button = \
+                self.driver.find_element(*DevelopmentPanelLocators.
+                                         TEAM_DOLOTO_ICON)
+            logging.warning(" team_doloto_icon was found!")
+            return button
+        except Exception:
+            logging.warning(" team_doloto_icon wasn't found!")
 
     def get_department_text(self):
         """ Get current department text. """
-        return self.driver.find_element(*AboutPageLocators.DEPARTMENT_NAME). \
-            text
+        try:
+            text = \
+                self.driver.find_element(*AboutPageLocators.
+                                         DEPARTMENT_NAME).text
+            logging.warning(" department_text was found!")
+            return text
+        except Exception:
+            logging.warning(" department_text wasn't found!")
 
     def floppy_drive_team_icon(self):
         """ Get Floppy Drive 8 team icon from Development & Research."""
-        return self.driver.find_element(*DevelopmentPanelLocators.
-                                        FLOPPY_DRIVE_TEAM_ICON)
+        try:
+            button = \
+                self.driver.find_element(*DevelopmentPanelLocators.
+                                         FLOPPY_DRIVE_TEAM_ICON)
+            logging.warning(" floppy_drive_team_icon was found!")
+            return button
+        except Exception:
+            logging.warning(" floppy_drive_team_icon wasn't found!")
 
     def fix_machine_icon(self):
         """ Get Fix Machine team icon from Development & Research."""
-        return self.driver.find_element(*DevelopmentPanelLocators.
-                                        FIX_MACHINE_TEAM_ICON)
+        try:
+            button = \
+                self.driver.find_element(*DevelopmentPanelLocators.
+                                         FIX_MACHINE_TEAM_ICON)
+            logging.warning(" fix_machine_icon was found!")
+            return button
+        except Exception:
+            logging.warning(" fix_machine_icon wasn't found!")
 
     def light_side_icon(self):
         """ Get The Light Side team icon from Quality Assurance."""
-        return self.driver.find_element(*QualityAssurancePanelLocators.
-                                        LIGHT_SIDE_ICON)
+        try:
+            button = \
+                self.driver.find_element(*QualityAssurancePanelLocators.
+                                         LIGHT_SIDE_ICON)
+            logging.warning(" light_side_icon was found!")
+            return button
+        except Exception:
+            logging.warning(" light_side_icon wasn't found!")
 
     def fluffy_dots_icon(self):
         """ Get Fluffy Dots team icon from Quality Assurance."""
-        return self.driver.find_element(*QualityAssurancePanelLocators.
-                                        FLUFFY_DOTS_ICON)
+        try:
+            button = \
+                self.driver.find_element(*QualityAssurancePanelLocators.
+                                         FLUFFY_DOTS_ICON)
+            logging.warning(" fluffy_dots_icon was found!")
+            return button
+        except Exception:
+            logging.warning(" fluffy_dots_icon wasn't found!")
 
     def charming_chaos_icon(self):
         """ Get Charming Chaos team icon from Quality Assurance."""
-        return self.driver.find_element(*QualityAssurancePanelLocators.
-                                        CHARMIN_CHAOS_ICON)
+        try:
+            button = \
+                self.driver.find_element(*QualityAssurancePanelLocators.
+                                         CHARMIN_CHAOS_ICON)
+            logging.warning(" charming_chaos_icon was found!")
+            return button
+        except Exception:
+            logging.warning(" charming_chaos_icon wasn't found!")
 
     def get_panel_with_photos(self):
         """ Get panel where placed photo of teammates."""
-        return self.driver.find_element(*AboutPageLocators.
-                                        DEVELOPMENT_TEAM_PHOTOS_PANEL)
+        try:
+            panel = \
+                self.driver.find_element(*AboutPageLocators.
+                                         DEVELOPMENT_TEAM_PHOTOS_PANEL)
+            logging.warning(" panel_with_photos was found!")
+            return panel
+        except Exception:
+            logging.warning(" panel_with_photos wasn't found!")
 
     def get_all_photos(self):
         """ Get all teammates photos when open team window."""
-        return self.driver.find_elements(*AboutPageLocators.PHOTO)
+        try:
+            photos = self.driver.find_elements(*AboutPageLocators.PHOTO)
+            logging.warning("All photos was found.")
+            return photos
+        except Exception:
+            logging.warning("All photos wasn't found.")
 
     def get_teammate_name_text(self):
         """ Get teammate name from panel with  photos."""
@@ -96,58 +174,102 @@ class LocationsWindow(object):
 
     def select_dnipro_location(self):
         """ Click on location on location window."""
-        self.driver.find_element(
-            *LocationWindowLocators.DNIPRO_LOCATION).click()
-        return self
+        try:
+            self.driver.find_element(
+                *LocationWindowLocators.DNIPRO_LOCATION).click()
+            logging.warning(" Select Dnipro Location works!")
+            return self
+        except Exception:
+            logging.warning(" Select Dnipro Location doesn't work!")
 
     def select_chernivtsy_location(self):
         """ Click on location on location window."""
-        self.driver.find_element(
-            *LocationWindowLocators.CHERNIVTSY_LOCATION).click()
-        return self
+        try:
+            self.driver.find_element(
+                *LocationWindowLocators.CHERNIVTSY_LOCATION).click()
+            logging.warning(" Select Cherenivtsy Location works!")
+            return self
+        except Exception:
+            logging.warning(" Select Cherenivtsy Location doesn't work!")
 
     def select_ivano_frankivsk_location(self):
         """ Click on location on location window."""
-        self.driver.find_element(
-            *LocationWindowLocators.IVANO_FRANKIVSK_LOCATION).click()
-        return self
+        try:
+            self.driver.find_element(
+                *LocationWindowLocators.IVANO_FRANKIVSK_LOCATION).click()
+            logging.warning(" Select ivano_frankivsk Location works!")
+            return self
+        except Exception:
+            logging.warning(" Select ivano_frankivsk Location doesn't work!")
 
     def select_kyiv_location(self):
         """ Click on location on location window."""
-        self.driver.find_element(
-            *LocationWindowLocators.KYIV_LOCATION).click()
-        return self
+        try:
+            self.driver.find_element(
+                *LocationWindowLocators.KYIV_LOCATION).click()
+            logging.warning(" Select kyiv Location works!")
+            return self
+        except Exception:
+            logging.warning(" Select kyiv Location doesn't work!")
 
     def select_lviv_location(self):
         """ Click on location on location window."""
-        self.driver.find_element(
-            *LocationWindowLocators.LVIV_LOCATION).click()
-        return self
+        try:
+            self.driver.find_element(
+                *LocationWindowLocators.LVIV_LOCATION).click()
+            logging.warning(" Select lviv Location works!")
+            return self
+        except Exception:
+            logging.warning(" Select lviv Location doesn't work!")
 
     def select_rivne_location(self):
         """ Click on location on location window."""
-        self.driver.find_element(
-            *LocationWindowLocators.RIVNE_LOCATION).click()
-        return self
+        try:
+            self.driver.find_element(
+                *LocationWindowLocators.RIVNE_LOCATION).click()
+            logging.warning(" Select rivne Location works!")
+            return self
+        except Exception:
+            logging.warning(" Select rivne Location doesn't work!")
 
     def select_sofia_location(self):
         """ Click on location on location window."""
-        self.driver.find_element(
-            *LocationWindowLocators.SOFIA_LOCATION).click()
-        return self
+        try:
+            self.driver.find_element(
+                *LocationWindowLocators.SOFIA_LOCATION).click()
+            logging.warning(" Select rivne Location works!")
+            return self
+        except Exception:
+            logging.warning(" Select rivne Location doesn't work!")
 
     def save_button(self):
         """ Return save button web element."""
-        return self.driver.find_element(*LocationWindowLocators.SAVE_BUTTON)
+        try:
+            save_button = self.driver.find_element(*LocationWindowLocators.SAVE_BUTTON)
+            logging.warning("Save button was found.")
+            return save_button
+        except Exception:
+            logging.warning("Didn't found save button.")
 
     def disabled_save_button(self):
         """ Return disabled save button web element."""
-        return self.driver.find_element(
-            *LocationWindowLocators.DISABLED_SAVE_BUTTON)
+        try:
+            disabled_save_button = self.driver.find_element(*LocationWindowLocators.
+                                                            DISABLED_SAVE_BUTTON)
+            logging.warning("Disabled save button was found.")
+            return disabled_save_button
+        except Exception:
+            logging.warning("Didn't found disabled save button.")
 
     def cancel_button(self):
         """ Return cancel button web element."""
-        return self.driver.find_element(*LocationWindowLocators.CANCEL_BUTTON)
+        try:
+            cancel_button = self.driver.find_element(*LocationWindowLocators.
+                                                     CANCEL_BUTTON)
+            logging.warning("Cancel button was found.")
+            return cancel_button
+        except Exception:
+            logging.warning("Didn't found cancel button.")
 
     def get_current_url(self):
         """ Get url on current page."""
@@ -386,154 +508,143 @@ class GroupsPage(BasePage):
     class CreateGroupWindow(object):
         def __init__(self):
             self.driver = GroupsPage.driver
+            self.group_name_field = WebDriverWait(self.driver, TIME_TO_WAIT). \
+                until(EC.element_to_be_clickable(CreateGroupWindowLocators.
+                                                 GROUP_NAME_FIELD))
+            self.group_name_form = WebDriverWait(self.driver, TIME_TO_WAIT). \
+                until(EC.presence_of_element_located(CreateGroupWindowLocators.
+                                                     GROUP_NAME_FORM))
+            self.group_direction_form = WebDriverWait(self.driver, TIME_TO_WAIT). \
+                until(EC.presence_of_element_located(CreateGroupWindowLocators.
+                                                     DIRECTION_FORM))
+            self.group_location_form = WebDriverWait(self.driver, TIME_TO_WAIT). \
+                until(EC.presence_of_element_located(CreateGroupWindowLocators.
+                                                     LOCATION_FORM))
+            self.start_date_form = WebDriverWait(self.driver, TIME_TO_WAIT). \
+                until(EC.presence_of_element_located(CreateGroupWindowLocators.
+                                                     START_DATE_FORM))
+            self.experts_form = WebDriverWait(self.driver, TIME_TO_WAIT). \
+                until(EC.presence_of_element_located(CreateGroupWindowLocators.
+                                                     EXPERTS_FORM))
+            self.group_direction_list = WebDriverWait(self.driver, TIME_TO_WAIT). \
+                until(EC.element_to_be_clickable(CreateGroupWindowLocators.
+                                                 DIRECTION_DROP_LIST))
+            self.group_location_list = WebDriverWait(self.driver, TIME_TO_WAIT). \
+                until(EC.element_to_be_clickable(CreateGroupWindowLocators.
+                                                 LOCATION_DROP_LIST))
+            self.teacher_add_button = WebDriverWait(self.driver, TIME_TO_WAIT). \
+                until(EC.element_to_be_clickable(CreateGroupWindowLocators.
+                                                 ONE_MORE_TEACHER_BUTTON))
+            self.start_date_field = WebDriverWait(self.driver, TIME_TO_WAIT). \
+                until(EC.element_to_be_clickable(CreateGroupWindowLocators.
+                                                 START_DATE_FIELD))
+            self.finish_date_field = WebDriverWait(self.driver, TIME_TO_WAIT). \
+                until(EC.element_to_be_clickable(CreateGroupWindowLocators.
+                                                 FINISH_DATE_FIELD))
+            self.save_group_button = WebDriverWait(self.driver, TIME_TO_WAIT). \
+                until(EC.element_to_be_clickable(CreateGroupWindowLocators.
+                                                 SAVE_BUTTON))
+            self.cancel_button = WebDriverWait(self.driver, TIME_TO_WAIT). \
+                until(EC.element_to_be_clickable(CreateGroupWindowLocators.
+                                                 CANCEL_BUTTON))
+            self.add_expert_button = WebDriverWait(self.driver, TIME_TO_WAIT). \
+                until(EC.element_to_be_clickable(CreateGroupWindowLocators.
+                                                 ADD_EXPERT_BUTTON))
 
         def get_group_name_field(self) -> object:
             """ Get group name field web element."""
-            return WebDriverWait(self.driver, TIME_TO_WAIT).until(
-                EC.element_to_be_clickable(CreateGroupWindowLocators.
-                                           GROUP_NAME_FIELD))
+            return self.group_name_field
 
         def set_group_name(self, new_group_name) -> object:
             """ Set group name using entered value."""
-            field_name_of_group = WebDriverWait(self.driver, TIME_TO_WAIT).until(
-                EC.element_to_be_clickable(CreateGroupWindowLocators.
-                                           GROUP_NAME_FIELD))
-            field_name_of_group.clear()
-            field_name_of_group.send_keys(new_group_name)
+            self.clear_group_name_field()
+            self.group_name_field.send_keys(new_group_name)
             return self
 
         def clear_group_name_field(self) -> object:
             """ Clear group name field."""
-            field_name_of_group = WebDriverWait(self.driver, TIME_TO_WAIT).until(
-                EC.element_to_be_clickable(CreateGroupWindowLocators.
-                                           GROUP_NAME_FIELD))
-            field_name_of_group.clear()
+            self.group_name_field.clear()
             return self
 
         def get_group_name_form(self) -> object:
             """ Get group name form web element. """
-            return WebDriverWait(self.driver, TIME_TO_WAIT).until(
-                EC.presence_of_element_located(CreateGroupWindowLocators.
-                                               GROUP_NAME_FORM))
+            return self.group_name_form
 
         def get_group_direction_form(self) -> object:
             """ Get direction form web element."""
-            return WebDriverWait(self.driver, TIME_TO_WAIT).until(
-                EC.presence_of_element_located(CreateGroupWindowLocators.
-                                               DIRECTION_FORM))
+            return self.group_direction_form
 
         def get_group_location_form(self) -> object:
             """ Get location form web element."""
-            return WebDriverWait(self.driver, TIME_TO_WAIT).until(
-                EC.presence_of_element_located(CreateGroupWindowLocators.
-                                               LOCATION_FORM))
+            return self.group_location_form
 
         def get_start_date_form(self) -> object:
             """ Get start date form web element."""
-            return WebDriverWait(self.driver, TIME_TO_WAIT).until(
-                EC.presence_of_element_located(CreateGroupWindowLocators.
-                                               START_DATE_FORM))
+            return self.start_date_form
 
         def get_experts_form(self) -> object:
             """ Get expert form web element."""
-            return WebDriverWait(self.driver, TIME_TO_WAIT).until(
-                EC.presence_of_element_located(CreateGroupWindowLocators.
-                                               EXPERTS_FORM))
+            return self.experts_form
 
         def get_value_group_name_field(self) -> str:
             """ Get value from group name field."""
-            return WebDriverWait(self.driver, TIME_TO_WAIT).until(
-                EC.element_to_be_clickable(
-                    CreateGroupWindowLocators.GROUP_NAME_FIELD)). \
-                get_attribute("value")
+            return self.group_name_field.get_attribute("value")
 
         def get_group_direction(self) -> object:
             """ Get  group direction web element."""
-            return WebDriverWait(self.driver, TIME_TO_WAIT).until(
-                EC.element_to_be_clickable(CreateGroupWindowLocators.
-                                           DIRECTION_DROP_LIST))
+            return self.group_direction_list
 
         def set_group_direction(self, str_direction) -> object:
             """ Set  chosen group direction."""
-            list_direction = WebDriverWait(self.driver, TIME_TO_WAIT).until(
-                EC.element_to_be_clickable(CreateGroupWindowLocators.
-                                           DIRECTION_DROP_LIST))
-            select_direction = Select(list_direction)
-            select_direction.select_by_index(str_direction)
+            select_direction = Select(self.group_direction_list)
+            select_direction.select_by_value(str_direction)
             return self
 
         def get_value_of_direction(self) -> str:
             """ Get value of group from direction field."""
-            return WebDriverWait(self.driver, TIME_TO_WAIT).until(
-                EC.element_to_be_clickable(
-                    CreateGroupWindowLocators.DIRECTION_DROP_LIST)). \
-                get_attribute("value")
+            return self.group_direction_list.get_attribute("value")
 
         def get_group_location(self) -> object:
             """ Get  group location web element."""
-            return WebDriverWait(self.driver, TIME_TO_WAIT).until(
-                EC.element_to_be_clickable(CreateGroupWindowLocators.
-                                           LOCATION_DROP_LIST))
+            return self.group_location_list
 
-        def set_group_location(self, location_index) -> object:
+        def set_group_location(self, location_value) -> object:
             """ Set  chosen group location."""
-            locations_get = WebDriverWait(self.driver, TIME_TO_WAIT).until(
-                EC.element_to_be_clickable(CreateGroupWindowLocators.
-                                           LOCATION_DROP_LIST))
-            locations_get.click()
-            select_location = Select(locations_get)
-            select_location.select_by_index(location_index)
+            self.group_location_list.click()
+            select_location = Select(self.group_location_list)
+            select_location.select_by_visible_text(location_value)
             return self
 
         def get_value_of_location(self) -> str:
             """ Get value from group location field."""
-            drop_list_location_of_group = WebDriverWait(self.driver,
-                                                        TIME_TO_WAIT).until(
-                EC.element_to_be_clickable(CreateGroupWindowLocators.
-                                           LOCATION_DROP_LIST))
-            location_of_group = drop_list_location_of_group. \
-                get_attribute("value")
-            return location_of_group
+            return self.group_location_list.get_attribute("value")
 
         def get_teacher_add_button(self) -> object:
             """ Get  teacher add button web element."""
-            return WebDriverWait(self.driver, TIME_TO_WAIT).until(
-                EC.element_to_be_clickable(CreateGroupWindowLocators.
-                                           ONE_MORE_TEACHER_BUTTON))
+            return self.teacher_add_button
 
         def get_teachers_drop_list(self) -> object:
             """ Get  teachers drop down list web element ."""
-            button_add_teacher = WebDriverWait(self.driver, TIME_TO_WAIT).until(
-                EC.element_to_be_clickable(CreateGroupWindowLocators.
-                                           ONE_MORE_TEACHER_BUTTON))
-            button_add_teacher.click()
-            drop_list_teachers = WebDriverWait(self.driver, TIME_TO_WAIT).until(
-                EC.element_to_be_clickable(CreateGroupWindowLocators.
-                                           TEACHERS_DROP_LIST))
-            return drop_list_teachers
+            self.teacher_add_button.click()
+            try:
+                return WebDriverWait(self.driver, TIME_TO_WAIT).until(
+                    EC.element_to_be_clickable(CreateGroupWindowLocators.
+                                               TEACHERS_DROP_LIST))
+            finally:
+                return NoSuchElementException
 
         def select_teacher(self, teacher_name) -> object:
             """ Select teacher from teachers drop down list."""
-            button_add_teacher = WebDriverWait(self.driver, TIME_TO_WAIT).until(
-                EC.element_to_be_clickable(CreateGroupWindowLocators.
-                                           ONE_MORE_TEACHER_BUTTON))
-            button_add_teacher.click()
-            drop_list_teachers = WebDriverWait(self.driver, TIME_TO_WAIT).until(
-                EC.element_to_be_clickable(CreateGroupWindowLocators.
-                                           TEACHERS_DROP_LIST))
-            drop_list_teachers.click()
-            select = Select(drop_list_teachers)
+            self.get_teacher_add_button().click()
+            self.get_teachers_drop_list().click()
+            select = Select(self.get_teachers_drop_list())
             select.select_by_index(teacher_name)
-            self.driver.find_element(CreateGroupWindowLocators.
-                                     ACCEPT_TEACHER_BUTTON).click()
+            self.driver.find_element(CreateGroupWindowLocators.ACCEPT_TEACHER_BUTTON)
             return self
 
         def add_teacher(self) -> object:
             """ Accept choosing teacher from teachers drop down list."""
-            button_add_teacher = WebDriverWait(self.driver, TIME_TO_WAIT).until(
-                EC.element_to_be_clickable(CreateGroupWindowLocators.
-                                           ONE_MORE_TEACHER_BUTTON))
-            button_add_teacher.click()
+            self.get_teacher_add_button().click()
             WebDriverWait(self.driver, TIME_TO_WAIT).until(
                 EC.element_to_be_clickable(CreateGroupWindowLocators.
                                            ACCEPT_TEACHER_BUTTON)).click()
@@ -544,8 +655,7 @@ class GroupsPage(BasePage):
             added_teachers_form = WebDriverWait(self.driver, TIME_TO_WAIT).until(
                 EC.presence_of_element_located(CreateGroupWindowLocators.
                                                ADDED_TEACHERS_FORM))
-            added_teachers_list = added_teachers_form.\
-                find_elements(By.CLASS_NAME, 'list-item')
+            added_teachers_list = added_teachers_form.find_elements(By.CLASS_NAME, 'list-item')
             list_of_teachers_values = []
             for added_teacher in added_teachers_list:
                 list_of_teachers_values.append(added_teacher.text)
@@ -553,29 +663,18 @@ class GroupsPage(BasePage):
 
         def set_start_date(self, start_date_value) -> object:
             """ Set value to "start date" field."""
-            field_date_start_field = WebDriverWait(self.driver, TIME_TO_WAIT).until(
-                EC.element_to_be_clickable(CreateGroupWindowLocators.
-                                           START_DATE_FIELD))
-            field_date_start_field.send_keys(start_date_value)
-            field_date_finish = WebDriverWait(self.driver, TIME_TO_WAIT).until(
-                EC.element_to_be_clickable(CreateGroupWindowLocators.
-                                           FINISH_DATE_FIELD))
-            field_date_finish.send_keys(Keys.ENTER)
+            self.start_date_field.send_keys(start_date_value)
+            self.finish_date_field.send_keys(Keys.ENTER)
             return self
 
         def submit_group_creating_button(self) -> object:
             """ End group creating and save all fields."""
-            button_save_group = WebDriverWait(self.driver, TIME_TO_WAIT).until(
-                EC.element_to_be_clickable(CreateGroupWindowLocators.
-                                           SAVE_BUTTON))
-            button_save_group.click()
+            self.save_group_button.click()
             return self
 
         def get_save_group_button(self) -> object:
             """ Get "Save" button web element."""
-            return WebDriverWait(self.driver, TIME_TO_WAIT).until(
-                EC.element_to_be_clickable(CreateGroupWindowLocators.
-                                           SAVE_BUTTON))
+            return self.save_group_button
 
         def get_warning_message_by_form(self, form) -> object:
             """ Get  pop-up warning message web element, attached to this form."""
@@ -590,16 +689,12 @@ class GroupsPage(BasePage):
 
         def cancel_button_get(self) -> object:
             """ Get "Cancel" button web element."""
-            return WebDriverWait(self.driver, TIME_TO_WAIT).until(
-                EC.element_to_be_clickable(CreateGroupWindowLocators.
-                                           CANCEL_BUTTON))
+            return self.cancel_button
 
         def add_expert(self, expert_name) -> object:
             """ Add expert - first click the "+one more expert" button, then set
             expert's name and then click  "accept  expert" button."""
-            WebDriverWait(self.driver, TIME_TO_WAIT).until(
-                EC.element_to_be_clickable(
-                    CreateGroupWindowLocators.ADD_EXPERT_BUTTON)).click()
+            self.add_expert_button.click()
             WebDriverWait(self.driver, TIME_TO_WAIT).until(
                 EC.element_to_be_clickable(
                     CreateGroupWindowLocators.EXPERTS_NAME_FIELD)). \
@@ -614,53 +709,23 @@ class GroupsPage(BasePage):
             added_experts_form = WebDriverWait(self.driver, TIME_TO_WAIT).until(
                 EC.presence_of_element_located(CreateGroupWindowLocators.
                                                ADDED_EXPERTS_LIST))
-            added_experts_list = added_experts_form.\
+            added_experts_list = added_experts_form. \
                 find_elements(By.CLASS_NAME, 'list-item')
             list_of_values = []
             for added_expert in added_experts_list:
                 list_of_values.append(added_expert.text)
             return list_of_values
 
-        def auto_fill_all_fields(self, new_group_name, location):
+        def auto_fill_all_fields(self, new_group_name, group_location,
+                                 group_direction) -> None:
             """ Fill  all fields, to create some group,
                             function used to test deleting of groups."""
-            if location == "Chernivtsy":
-                location_index = 0
-            elif location == "Dnipro":
-                location_index = 1
-            elif location == "Ivano-Frankivsk":
-                location_index = 2
-            elif location == "Kyiv":
-                location_index = 3
-            elif location == "Lviv":
-                location_index = 4
-            elif location == "Rivne":
-                location_index = 5
-            elif location == "Sofia":
-                location_index = 6
-            else:
-                location_index = 1
-            direction_field = WebDriverWait(self.driver, TIME_TO_WAIT).until(
-                EC.element_to_be_clickable(CreateGroupWindowLocators.
-                                           DIRECTION_DROP_LIST))
-            direction_field.click()
-            directions_list = direction_field.find_elements(
-                By.TAG_NAME, 'option')
-            random_direction_index = random.randint(
-                1, 3)
-            select_direction = Select(direction_field)
-            select_direction.select_by_index(random_direction_index)
-            location_field = WebDriverWait(self.driver, TIME_TO_WAIT).until(
-                EC.element_to_be_clickable(CreateGroupWindowLocators.
-                                           LOCATION_DROP_LIST))
-            location_field.click()
-            random_location_index = location_index
-            select_location = Select(location_field)
-            select_location.select_by_index(random_location_index)
-            button_add_teacher = WebDriverWait(self.driver, TIME_TO_WAIT). \
-                until(EC.element_to_be_clickable(CreateGroupWindowLocators.
-                                                 ONE_MORE_TEACHER_BUTTON))
-            button_add_teacher.click()
+            self.group_direction_list.click()
+            self.set_group_direction(group_direction)
+            self.group_location_list.click()
+            select_location = Select(self.group_location_list)
+            select_location.select_by_value(group_location)
+            self.teacher_add_button.click()
             drop_list_teachers = WebDriverWait(self.driver, TIME_TO_WAIT).until(
                 EC.element_to_be_clickable(CreateGroupWindowLocators.
                                            TEACHERS_DROP_LIST))
@@ -670,30 +735,9 @@ class GroupsPage(BasePage):
             WebDriverWait(self.driver, TIME_TO_WAIT).until(
                 EC.element_to_be_clickable(CreateGroupWindowLocators.
                                            ACCEPT_TEACHER_BUTTON)).click()
-            WebDriverWait(self.driver, TIME_TO_WAIT).until(
-                EC.element_to_be_clickable(CreateGroupWindowLocators.
-                                           ADD_EXPERT_BUTTON)).click()
-            WebDriverWait(self.driver, TIME_TO_WAIT).until(
-                EC.element_to_be_clickable(
-                    CreateGroupWindowLocators.EXPERTS_NAME_FIELD)).send_keys(
-                TEST_FIRST_EXPERT_NAME)
-            WebDriverWait(self.driver, TIME_TO_WAIT).until(
-                EC.element_to_be_clickable(CreateGroupWindowLocators.
-                                           ACCEPT_EXPERT_BUTTON)).click()
-            field_date_start_field = WebDriverWait(self.driver,
-                                                   TIME_TO_WAIT).until(
-                EC.element_to_be_clickable(CreateGroupWindowLocators.
-                                           START_DATE_FIELD))
-            field_date_start_field.send_keys(TEST_START_DATE)
-            field_date_finish = WebDriverWait(self.driver, TIME_TO_WAIT).until(
-                EC.element_to_be_clickable(CreateGroupWindowLocators.
-                                           FINISH_DATE_FIELD))
-            field_date_finish.send_keys(Keys.ENTER)
-            field_name_of_group = WebDriverWait(self.driver, TIME_TO_WAIT).until(
-                EC.element_to_be_clickable(CreateGroupWindowLocators.
-                                           GROUP_NAME_FIELD))
-            field_name_of_group.clear()
-            field_name_of_group.send_keys(new_group_name)
-            WebDriverWait(self.driver, TIME_TO_WAIT).until(
-                EC.element_to_be_clickable(CreateGroupWindowLocators.
-                                           SAVE_BUTTON)).click()
+            self.add_expert(TEST_FIRST_EXPERT_NAME)
+            self.start_date_field.send_keys(TEST_START_DATE)
+            self.finish_date_field.send_keys(Keys.ENTER)
+            self.group_name_field.clear()
+            self.group_name_field.send_keys(new_group_name)
+            self.save_group_button.click()

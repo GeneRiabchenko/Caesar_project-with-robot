@@ -6,6 +6,7 @@ from selenium.common.exceptions import TimeoutException,\
 from resource.path_driver import GetDriver
 from resource.users_base import *
 from resource.url_site import PathUrl
+from resource.constants_creating_group import TEST_DIRECTION
 from caesar_items.pages.login_page import LogInPage
 from tests.test_base import TestBase
 
@@ -29,7 +30,7 @@ class TestGroupPageAdmin(TestBase):
         left_menu = group_page.open_left_menu()
         left_menu.create_group_button().click()
         group_page.CreateGroupWindow().auto_fill_all_fields(
-            group_to_delete_name, first_admin.location)
+            group_to_delete_name, first_admin.location, TEST_DIRECTION)
         driver.quit()
 
     def setUp(self):
@@ -223,7 +224,7 @@ class TestGroupPageCoordinator(TestBase):
         left_menu = group_page.open_left_menu()
         left_menu.create_group_button().click()
         group_page.CreateGroupWindow().auto_fill_all_fields(
-            group_to_delete_name, first_admin.location)
+            group_to_delete_name, first_admin.location, TEST_DIRECTION)
         driver.quit()
 
     def setUp(self):
