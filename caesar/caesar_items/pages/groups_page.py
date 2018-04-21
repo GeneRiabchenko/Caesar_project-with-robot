@@ -1,5 +1,3 @@
-import random
-import logging
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -17,152 +15,90 @@ from caesar_items.pages.admin_page import AdminPage
 from resource.url_site import PathUrl
 from resource.constants_creating_group import TIME_TO_WAIT, \
     TEST_TEACHER_INDEX, TEST_FIRST_EXPERT_NAME, TEST_START_DATE
+from resource.error_handler import logger_exception
 
 
 class AboutPage(object):
     def __init__(self, driver):
         self.driver = driver
 
+    @logger_exception
     def development_research_button(self):
         """ Get Development & Research button from about page."""
-        try:
-            dev_res_button = \
-                self.driver.find_element(*AboutPageLocators.
-                                         DEVELOPMENT_RESEARCH_BUTTON)
-            logging.warning(" Development_research_button was found.")
-            return dev_res_button
-        except Exception:
-            logging.warning(" Development_research_button wasn't found.")
+        return self.driver.find_element(*AboutPageLocators.
+                                        DEVELOPMENT_RESEARCH_BUTTON)
 
+    @logger_exception
     def quality_assurance_button(self):
         """ Get Quality Assurance button from about page."""
-        try:
-            qa_button = self.driver.find_element(*AboutPageLocators.
-                                                 QUALITY_ASSURANCE)
-            logging.warning(" QA button was found!")
-            return qa_button
-        except Exception:
-            logging.warning(" QA button wasn't found!")
+        return self.driver.find_element(*AboutPageLocators.QUALITY_ASSURANCE)
 
+    @logger_exception
     def management_button(self):
         """ Get Management and Mentoring button from about page."""
-        try:
-            managment_button = \
-                self.driver.find_element(*AboutPageLocators.
-                                         MANAGEMENT_MENTORING_BUTTON)
-            logging.warning(" Management_button was found!")
-            return managment_button
-        except Exception:
-            logging.warning(" Management_button wasn't found!")
+        return self.driver.find_element(*AboutPageLocators.
+                                        MANAGEMENT_MENTORING_BUTTON)
 
+    @logger_exception
     def additional_thanks_button(self):
         """ Get Additional Thanks button from about page."""
-        try:
-            button = \
-                self.driver.find_element(*AboutPageLocators.
-                                         ADDITIONAL_THANKS_BUTTON)
-            logging.warning(" additional_thanks_button was found!")
-            return button
-        except Exception:
-            logging.warning(" additional_thanks_button wasn't found!")
+        return self.driver.find_element(*AboutPageLocators.
+                                        ADDITIONAL_THANKS_BUTTON)
 
+    @logger_exception
     def team_doloto_icon(self):
         """ Get Team Doloto icon from Development & Research."""
-        try:
-            button = \
-                self.driver.find_element(*DevelopmentPanelLocators.
-                                         TEAM_DOLOTO_ICON)
-            logging.warning(" team_doloto_icon was found!")
-            return button
-        except Exception:
-            logging.warning(" team_doloto_icon wasn't found!")
+        return self.driver.find_element(*DevelopmentPanelLocators.
+                                        TEAM_DOLOTO_ICON)
 
+    @logger_exception
     def get_department_text(self):
         """ Get current department text. """
-        try:
-            text = \
-                self.driver.find_element(*AboutPageLocators.
-                                         DEPARTMENT_NAME).text
-            logging.warning(" department_text was found!")
-            return text
-        except Exception:
-            logging.warning(" department_text wasn't found!")
+        return self.driver.find_element(*AboutPageLocators.
+                                        DEPARTMENT_NAME).text
 
+    @logger_exception
     def floppy_drive_team_icon(self):
         """ Get Floppy Drive 8 team icon from Development & Research."""
-        try:
-            button = \
-                self.driver.find_element(*DevelopmentPanelLocators.
-                                         FLOPPY_DRIVE_TEAM_ICON)
-            logging.warning(" floppy_drive_team_icon was found!")
-            return button
-        except Exception:
-            logging.warning(" floppy_drive_team_icon wasn't found!")
+        return self.driver.find_element(*DevelopmentPanelLocators.
+                                        FLOPPY_DRIVE_TEAM_ICON)
 
+    @logger_exception
     def fix_machine_icon(self):
         """ Get Fix Machine team icon from Development & Research."""
-        try:
-            button = \
-                self.driver.find_element(*DevelopmentPanelLocators.
-                                         FIX_MACHINE_TEAM_ICON)
-            logging.warning(" fix_machine_icon was found!")
-            return button
-        except Exception:
-            logging.warning(" fix_machine_icon wasn't found!")
+        return self.driver.find_element(*DevelopmentPanelLocators.
+                                        FIX_MACHINE_TEAM_ICON)
 
+    @logger_exception
     def light_side_icon(self):
         """ Get The Light Side team icon from Quality Assurance."""
-        try:
-            button = \
-                self.driver.find_element(*QualityAssurancePanelLocators.
-                                         LIGHT_SIDE_ICON)
-            logging.warning(" light_side_icon was found!")
-            return button
-        except Exception:
-            logging.warning(" light_side_icon wasn't found!")
+        return self.driver.find_element(*QualityAssurancePanelLocators.
+                                        LIGHT_SIDE_ICON)
 
+    @logger_exception
     def fluffy_dots_icon(self):
         """ Get Fluffy Dots team icon from Quality Assurance."""
-        try:
-            button = \
-                self.driver.find_element(*QualityAssurancePanelLocators.
-                                         FLUFFY_DOTS_ICON)
-            logging.warning(" fluffy_dots_icon was found!")
-            return button
-        except Exception:
-            logging.warning(" fluffy_dots_icon wasn't found!")
+        return self.driver.find_element(*QualityAssurancePanelLocators.
+                                        FLUFFY_DOTS_ICON)
 
+    @logger_exception
     def charming_chaos_icon(self):
         """ Get Charming Chaos team icon from Quality Assurance."""
-        try:
-            button = \
-                self.driver.find_element(*QualityAssurancePanelLocators.
-                                         CHARMIN_CHAOS_ICON)
-            logging.warning(" charming_chaos_icon was found!")
-            return button
-        except Exception:
-            logging.warning(" charming_chaos_icon wasn't found!")
+        return self.driver.find_element(*QualityAssurancePanelLocators.
+                                        CHARMIN_CHAOS_ICON)
 
+    @logger_exception
     def get_panel_with_photos(self):
         """ Get panel where placed photo of teammates."""
-        try:
-            panel = \
-                self.driver.find_element(*AboutPageLocators.
-                                         DEVELOPMENT_TEAM_PHOTOS_PANEL)
-            logging.warning(" panel_with_photos was found!")
-            return panel
-        except Exception:
-            logging.warning(" panel_with_photos wasn't found!")
+        return self.driver.find_element(*AboutPageLocators.
+                                        DEVELOPMENT_TEAM_PHOTOS_PANEL)
 
+    @logger_exception
     def get_all_photos(self):
         """ Get all teammates photos when open team window."""
-        try:
-            photos = self.driver.find_elements(*AboutPageLocators.PHOTO)
-            logging.warning("All photos was found.")
-            return photos
-        except Exception:
-            logging.warning("All photos wasn't found.")
+        return self.driver.find_elements(*AboutPageLocators.PHOTO)
 
+    @logger_exception
     def get_teammate_name_text(self):
         """ Get teammate name from panel with  photos."""
         return self.driver.find_element(*AboutPageLocators.TEAMMATE_NAME).text
@@ -172,105 +108,77 @@ class LocationsWindow(object):
     def __init__(self, driver):
         self.driver = driver
 
+    @logger_exception
     def select_dnipro_location(self):
         """ Click on location on location window."""
-        try:
-            self.driver.find_element(
+        self.driver.find_element(
                 *LocationWindowLocators.DNIPRO_LOCATION).click()
-            logging.warning(" Select Dnipro Location works!")
-            return self
-        except Exception:
-            logging.warning(" Select Dnipro Location doesn't work!")
+        return self
 
+    @logger_exception
     def select_chernivtsy_location(self):
         """ Click on location on location window."""
-        try:
-            self.driver.find_element(
+        self.driver.find_element(
                 *LocationWindowLocators.CHERNIVTSY_LOCATION).click()
-            logging.warning(" Select Cherenivtsy Location works!")
-            return self
-        except Exception:
-            logging.warning(" Select Cherenivtsy Location doesn't work!")
+        return self
 
+    @logger_exception
     def select_ivano_frankivsk_location(self):
         """ Click on location on location window."""
-        try:
-            self.driver.find_element(
+        self.driver.find_element(
                 *LocationWindowLocators.IVANO_FRANKIVSK_LOCATION).click()
-            logging.warning(" Select ivano_frankivsk Location works!")
-            return self
-        except Exception:
-            logging.warning(" Select ivano_frankivsk Location doesn't work!")
+        return self
 
+    @logger_exception
     def select_kyiv_location(self):
         """ Click on location on location window."""
-        try:
-            self.driver.find_element(
+        self.driver.find_element(
                 *LocationWindowLocators.KYIV_LOCATION).click()
-            logging.warning(" Select kyiv Location works!")
-            return self
-        except Exception:
-            logging.warning(" Select kyiv Location doesn't work!")
+        return self
 
+    @logger_exception
     def select_lviv_location(self):
         """ Click on location on location window."""
-        try:
-            self.driver.find_element(
+        self.driver.find_element(
                 *LocationWindowLocators.LVIV_LOCATION).click()
-            logging.warning(" Select lviv Location works!")
-            return self
-        except Exception:
-            logging.warning(" Select lviv Location doesn't work!")
 
+        return self
+
+    @logger_exception
     def select_rivne_location(self):
         """ Click on location on location window."""
-        try:
-            self.driver.find_element(
+        self.driver.find_element(
                 *LocationWindowLocators.RIVNE_LOCATION).click()
-            logging.warning(" Select rivne Location works!")
-            return self
-        except Exception:
-            logging.warning(" Select rivne Location doesn't work!")
+        return self
 
+    @logger_exception
     def select_sofia_location(self):
         """ Click on location on location window."""
-        try:
-            self.driver.find_element(
+        self.driver.find_element(
                 *LocationWindowLocators.SOFIA_LOCATION).click()
-            logging.warning(" Select rivne Location works!")
-            return self
-        except Exception:
-            logging.warning(" Select rivne Location doesn't work!")
+        return self
 
+    @logger_exception
     def save_button(self):
         """ Return save button web element."""
-        try:
-            save_button = self.driver.find_element(*LocationWindowLocators.SAVE_BUTTON)
-            logging.warning("Save button was found.")
-            return save_button
-        except Exception:
-            logging.warning("Didn't found save button.")
+        save_button = self.driver.find_element(*LocationWindowLocators.SAVE_BUTTON)
+        return save_button
 
+    @logger_exception
     def disabled_save_button(self):
         """ Return disabled save button web element."""
-        try:
-            disabled_save_button = self.driver.find_element(*LocationWindowLocators.
+        disabled_save_button = self.driver.find_element(*LocationWindowLocators.
                                                             DISABLED_SAVE_BUTTON)
-            logging.warning("Disabled save button was found.")
-            return disabled_save_button
-        except Exception:
-            logging.warning("Didn't found disabled save button.")
+        return disabled_save_button
 
+    @logger_exception
     def cancel_button(self):
         """ Return cancel button web element."""
-        try:
-            cancel_button = self.driver.find_element(*LocationWindowLocators.
+        cancel_button = self.driver.find_element(*LocationWindowLocators.
                                                      CANCEL_BUTTON)
-            logging.warning("Cancel button was found.")
-            return cancel_button
-        except Exception:
-            logging.warning("Didn't found cancel button.")
+        return cancel_button
 
+    @logger_exception
     def get_current_url(self):
         """ Get url on current page."""
         return self.driver.current_url
@@ -280,20 +188,24 @@ class LeftMenu(object):
     def __init__(self, driver):
         self.driver = driver
 
+    @logger_exception
     def create_group_button(self):
         """ Get create button web element."""
         return WebDriverWait(self.driver, TIME_TO_WAIT).until(
             EC.visibility_of_element_located(
                 LeftMenuLocators.BUTTON_CREATE_GROUP))
 
+    @logger_exception
     def search_group_button(self):
         """ Get search button web element."""
         return self.driver.find_element(*LeftMenuLocators.BUTTON_SEARCH_GROUP)
 
+    @logger_exception
     def edit_group_button(self):
         """ Get edit button web element."""
         return self.driver.find_element(*LeftMenuLocators.BUTTON_EDIT_GROUP)
 
+    @logger_exception
     def delete_group_button(self):
         """ Get delete button web element."""
         return self.driver.find_element(*LeftMenuLocators.BUTTON_DELETE_GROUP)
@@ -303,22 +215,27 @@ class RightMenu(object):
     def __init__(self, driver):
         self.driver = driver
 
+    @logger_exception
     def click_logout_button(self):
         """ Click on logout web element."""
         self.driver.find_element(*RightMenuLocators.BUTTON_LOGOUT).click()
 
+    @logger_exception
     def get_user_full_name_text(self):
         """ Get user name from left menu."""
         return self.driver.find_element(*RightMenuLocators.USER_NAME).text
 
+    @logger_exception
     def get_user_role_text(self):
         """ Get user role from left menu."""
         return self.driver.find_element(*RightMenuLocators.USER_ROLE).text
 
+    @logger_exception
     def click_edit_user_button(self):
         """ Click on edit user button on right menu."""
         self.driver.find_element(*RightMenuLocators.BUTTON_EDIT_PROFILE).click()
 
+    @logger_exception
     def get_current_url(self):
         """ Get current url of page."""
         return self.driver.current_url
@@ -330,6 +247,7 @@ class TopMenu(object):
         self.locations = LocationsWindow(self.driver)
         self.about = AboutPage(self.driver)
 
+    @logger_exception
     def click_locations_button(self):
         """ Click locations button on top menu and wait when save button appears."""
         self.driver.find_element(*TopMenuLocators.LOCATIONS_BUTTON).click()
@@ -338,32 +256,38 @@ class TopMenu(object):
                                                     SAVE_BUTTON))
         return LocationsWindow(self.driver)
 
+    @logger_exception
     def click_groups_button(self):
         """ Click groups button on top menu."""
         self.driver.find_element(*TopMenuLocators.GROUPS_BUTTON_).click()
         self.driver.implicitly_wait(2)
 
+    @logger_exception
     def click_students_button(self):
         """ Click students button on top menu."""
         self.driver.find_element(*TopMenuLocators.STUDENTS_BUTTON).click()
         self.driver.implicitly_wait(2)
 
+    @logger_exception
     def click_schedule_button(self):
         """ Click schedule button on top menu."""
         self.driver.find_element(*TopMenuLocators.SCHEDULE_BUTTON).click()
         self.driver.implicitly_wait(2)
 
+    @logger_exception
     def click_add_button(self):
         """ Click add button on top menu."""
         self.driver.find_element(*TopMenuLocators.ADD_BUTTON).click()
         self.driver.implicitly_wait(2)
 
+    @logger_exception
     def click_about_button(self):
         """ Click about button on top menu."""
         self.driver.find_element(*TopMenuLocators.ABOUT_BUTTON).click()
         self.driver.implicitly_wait(2)
         return AboutPage(self.driver)
 
+    @logger_exception
     def click_logout_button(self):
         """ Click about button on top menu."""
         self.driver.find_element(*TopMenuLocators.BUTTON_LOGOUT).click()
@@ -381,30 +305,37 @@ class GroupsPage(BasePage):
         self.right_menu = RightMenu(self.driver)
         self.top_menu = TopMenu(self.driver)
 
+    @logger_exception
     def get_group_location_text(self):
         """ Get current locations from middle panel."""
         return self.driver.find_element(*GroupPageLocators.GROUP_LOCATION).text
 
+    @logger_exception
     def my_group_button(self):
         """ Get my group web element button."""
         return self.driver.find_element(*GroupPageLocators.BUTTON_MY_GROUPS)
 
+    @logger_exception
     def all_groups_button(self):
         """ Get all groups web element button."""
         return self.driver.find_element(*GroupPageLocators.BUTTON_ALL_GROUPS)
 
+    @logger_exception
     def ended_groups_button(self):
         """ Get finished groups web element button."""
         return self.driver.find_element(*GroupPageLocators.ENDED_GROUPS)
 
+    @logger_exception
     def current_groups_button(self):
         """ Get current groups web element button."""
         return self.driver.find_element(*GroupPageLocators.CURRENT_GROUPS)
 
+    @logger_exception
     def button_boarding_groups(self):
         """ Get boarding groups web element button."""
         return self.driver.find_element(*GroupPageLocators.BOARDING_GROUPS)
 
+    @logger_exception
     def select_group_by_name(self, group_name):
         """ Find group by name and click on it."""
         groups = self.driver.find_elements(*GroupPageLocators.GROUPS)
@@ -414,6 +345,7 @@ class GroupsPage(BasePage):
                 return 0
         return "group not exist"
 
+    @logger_exception
     def list_group_current(self):
         """ Get list of groups web element from current stage."""
         groups_list = []
@@ -422,6 +354,7 @@ class GroupsPage(BasePage):
             groups_list = group.text
         return groups_list
 
+    @logger_exception
     def list_of_groups(self):
         """ Get all groups from all stages."""
         self.ended_groups_button().click()
@@ -432,6 +365,7 @@ class GroupsPage(BasePage):
         list_of_groups += self.list_group_current()
         return list_of_groups
 
+    @logger_exception
     def open_left_menu(self):
         """ Move mouse on left side page."""
         left_menu = self.driver.find_element(*GroupPageLocators.LEFT_MENU)
@@ -442,6 +376,7 @@ class GroupsPage(BasePage):
                                                     BUTTON_SEARCH_GROUP))
         return self.left_menu
 
+    @logger_exception
     def open_right_menu(self):
         """ Click on user photo."""
         self.driver.find_element(*GroupPageLocators.USER_PHOTO).click()
@@ -450,12 +385,14 @@ class GroupsPage(BasePage):
                                                    BUTTON_LOGOUT))
         return self.right_menu
 
+    @logger_exception
     def open_top_menu(self):
         """ Move mouse on top page."""
         top_menu = self.driver.find_element(*GroupPageLocators.TOP_MENU)
         ActionChains(self.driver).move_to_element(top_menu).perform()
         return self.top_menu
 
+    @logger_exception
     def open_admin_page(self):
         """ Open admin page panel."""
         self.driver.get(PathUrl().ADMIN_PAGE)
@@ -464,6 +401,7 @@ class GroupsPage(BasePage):
                                                     BUTTON_ESCAPE))
         return AdminPage(self.driver)
 
+    @logger_exception
     def get_group_stage_text(self):
         """ Get stage text from bottom of middle panel."""
         group_stage = WebDriverWait(self.driver, TIME_TO_WAIT) \
@@ -471,35 +409,42 @@ class GroupsPage(BasePage):
             EC.visibility_of_element_located(GroupPageLocators.GROUP_STAGE))
         return group_stage.text
 
+    @logger_exception
     def confirm_deletion_button(self):
         """ Get confirm deletion web element button."""
         return self.driver. \
             find_element(*GroupPageLocators.BUTTON_CONFIRM_DELETION)
 
+    @logger_exception
     def cancel_deletion_button(self):
         """ Get cancel deletion web element button."""
         return self.driver. \
             find_element(*GroupPageLocators.BUTTON_CANCEL_DELETION)
 
+    @logger_exception
     def group_info_button(self):
         """ Get group's info button."""
         return self.driver.find_element(*GroupPageLocators.INFO_GROUP_BUTTON)
 
+    @logger_exception
     def group_students_button(self):
         """ Get group's students button."""
         return self.driver.find_element(*GroupPageLocators.
                                         STUDENTS_IN_GROUP_BUTTON)
 
+    @logger_exception
     def group_schedule_button(self):
         """ Get group's schedule button."""
         return self.driver.find_element(*GroupPageLocators.
                                         SCHEDULE_GROUP_BUTTON)
 
+    @logger_exception
     def group_message_button(self):
         """ Get group's message button."""
         return self.driver.find_element(*GroupPageLocators.
                                         MESSAGE_GROUP_BUTTON)
 
+    @logger_exception
     def group_edit_button(self):
         """ Get group edit button from info panel."""
         return self.driver.find_element(*GroupPageLocators.

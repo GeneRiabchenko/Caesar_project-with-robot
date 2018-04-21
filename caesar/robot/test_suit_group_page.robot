@@ -35,10 +35,4 @@ open_about_page
     Page Should Contain Element    css=.javascript
     [Teardown]    Close Browser
 
-open_schedule_page
-    [Setup]    Login with arguments    qwerty    1234
-    Wait Until Element Is Visible    class=groupLocation
-    Mouse Over    id=top-menu
-    Click Element    css=div.itemMenu:nth-child(4)
-    Page Should Contain Element    css=.javascript
-    [Teardown]    Close Browser
+

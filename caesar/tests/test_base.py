@@ -14,10 +14,10 @@ class TestBase(unittest.TestCase):
         self.driver.get(PathUrl.SITE_URL)
         self.driver.maximize_window()
         self.login_page = LogInPage(self.driver)
-        logging.basicConfig(filename="test.txt", level=logging.WARNING,
-                            format='%(module)s: %(funcName)s :%(message)s')
+        logging.basicConfig(filename="Log.log", level=logging.INFO,
+                            format='%(module)s: %(funcName)s: '
+                                   '%(message)s - %(asctime)s')
 
     def tearDown(self):
-        logging.warning("____________Test finished____________")
         self.driver.quit()
 
